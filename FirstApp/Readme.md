@@ -1,1 +1,1 @@
-First Android App, changes toolbars colors.
+First Android App, changes toolbars color.
