@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">WelcomeScreenWithAnimation</string>
+    <string name="drawer_opened">Select an item</string>
+    <string name="drawer_closed">Closed</string>
+</resources>
