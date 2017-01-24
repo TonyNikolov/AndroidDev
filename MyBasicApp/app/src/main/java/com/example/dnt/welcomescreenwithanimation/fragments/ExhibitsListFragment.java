@@ -7,6 +7,7 @@ import android.support.v4.app.ListFragment;
 import android.util.Log;
 
 import com.example.dnt.welcomescreenwithanimation.R;
+import com.example.dnt.welcomescreenwithanimation.adapters.ExhibitsAdapter;
 import com.example.dnt.welcomescreenwithanimation.models.Animal;
 import com.example.dnt.welcomescreenwithanimation.utilities.AnimalAPIInterface;
 
@@ -27,6 +28,7 @@ import static com.google.android.gms.analytics.internal.zzy.r;
 public class ExhibitsListFragment extends ListFragment{
 
     private final String base_url = "https://gist.githubusercontent.com/";
+    private ExhibitsAdapter mAdapter;
 
     public static ExhibitsListFragment getInstance(){
         ExhibitsListFragment fragment = new ExhibitsListFragment();
@@ -36,6 +38,9 @@ public class ExhibitsListFragment extends ListFragment{
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
+        setListShown(false);
+        mAdapter=new ExhibitsAdapter(getActivity(),0);
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(base_url)
@@ -48,14 +53,16 @@ public class ExhibitsListFragment extends ListFragment{
         call.enqueue(new Callback<List<Animal>>() {
             @Override
             public void onResponse(Call<List<Animal>> call, Response<List<Animal>> response) {
-                Log.e("Vliza","Vliza");
                 if(response.body()==null || response.body().isEmpty())
                     return;
 
                 for(Animal animal: response.body()){
-                    String name = animal.getName();
-                    Log.e("Zoo", name);
+                    mAdapter.add(animal);
                 }
+
+                mAdapter.notifyDataSetChanged();
+                setListAdapter(mAdapter);
+                setListShown(true);
             }
 
             @Override
