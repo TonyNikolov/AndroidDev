@@ -2,4 +2,5 @@
     <string name="app_name">WelcomeScreenWithAnimation</string>
     <string name="drawer_opened">Select an item</string>
     <string name="drawer_closed">Closed</string>
+    <string name="exhibits_feed">https://gist.githubusercontent.com/TonyNikolov/21c17a6627dece0c152b5c0f1188dfe5/raw/97684e4fcf452adff5e7bba072c992d5c34706c9/</string>
 </resources>

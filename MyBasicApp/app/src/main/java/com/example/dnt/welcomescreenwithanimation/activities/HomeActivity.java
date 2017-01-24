@@ -10,6 +10,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,13 +18,16 @@ import android.widget.Toast;
 
 import com.example.dnt.welcomescreenwithanimation.R;
 import com.example.dnt.welcomescreenwithanimation.events.DrawerSectionItemClickedEvent;
+import com.example.dnt.welcomescreenwithanimation.fragments.ExhibitsListFragment;
+import com.example.dnt.welcomescreenwithanimation.fragments.GalleryFragment;
+import com.example.dnt.welcomescreenwithanimation.fragments.ZooMapFragment;
 import com.example.dnt.welcomescreenwithanimation.utilities.EventBus;
 import com.squareup.otto.Subscribe;
 
 public class HomeActivity extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mActionBarDrawerToggle;
-    View.OnClickListener mOnClickListener;
+    private String mCurrentFragmentTitle;
 
 
     @Override
@@ -54,7 +58,13 @@ public class HomeActivity extends AppCompatActivity {
         };
 
         mDrawerLayout.addDrawerListener(mActionBarDrawerToggle);
+        displayInitialFragment();
 
+    }
+
+    private void displayInitialFragment(){
+        getSupportFragmentManager().beginTransaction().replace(R.id.container, ExhibitsListFragment.getInstance()).commit();
+        mCurrentFragmentTitle="Exhibits";
     }
 
     @Override
@@ -138,6 +148,12 @@ public class HomeActivity extends AppCompatActivity {
     @Subscribe
     public void onDrawerSectionItemClickEvent(DrawerSectionItemClickedEvent event){
         //Toast.makeText(this, "Section Clicked: "+ event.section,Toast.LENGTH_LONG).show();
+
+        mDrawerLayout.closeDrawers();
+        if(event==null || TextUtils.isEmpty(event.section) || event.section.equalsIgnoreCase(mCurrentFragmentTitle)){
+            return;
+        }
+
         Snackbar.make(findViewById(android.R.id.content), "HomeActivity: Section clicked "+event.section, Snackbar.LENGTH_LONG)
                 .setAction("DISMISS", new View.OnClickListener() {
                     @Override
@@ -146,5 +162,19 @@ public class HomeActivity extends AppCompatActivity {
                 })
                 .setActionTextColor(Color.RED)
                 .show();
+
+        if(event.section.equalsIgnoreCase("maps")){
+            getSupportFragmentManager().beginTransaction().replace(R.id.container, ZooMapFragment.getIntace()).commit();
+        }
+        else if(event.section.equalsIgnoreCase("gallery")){
+            getSupportFragmentManager().beginTransaction().replace(R.id.container, GalleryFragment.getInstance()).commit();
+        }
+        else if(event.section.equalsIgnoreCase("exhibits")){
+            getSupportFragmentManager().beginTransaction().replace(R.id.container,ExhibitsListFragment.getInstance()).commit();
+        }
+        else{
+            return;
+        }
+        mCurrentFragmentTitle=event.section;
     }
 }
