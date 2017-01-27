@@ -1,12 +1,16 @@
 package com.example.dnt.welcomescreenwithanimation.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
+import android.view.View;
+import android.widget.ListView;
 
 import com.example.dnt.welcomescreenwithanimation.R;
+import com.example.dnt.welcomescreenwithanimation.activities.ExhibitsDetailActivity;
 import com.example.dnt.welcomescreenwithanimation.adapters.ExhibitsAdapter;
 import com.example.dnt.welcomescreenwithanimation.models.Animal;
 import com.example.dnt.welcomescreenwithanimation.utilities.AnimalAPIInterface;
@@ -19,7 +23,6 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import static com.google.android.gms.analytics.internal.zzy.r;
 
 /**
  * Created by dnt on 24.1.2017 г..
@@ -33,6 +36,14 @@ public class ExhibitsListFragment extends ListFragment{
     public static ExhibitsListFragment getInstance(){
         ExhibitsListFragment fragment = new ExhibitsListFragment();
         return fragment;
+    }
+
+    @Override
+    public void onListItemClick(ListView l, View v, int position, long id) {
+        super.onListItemClick(l, v, position, id);
+        Intent intent = new Intent(getActivity(), ExhibitsDetailActivity.class);
+        intent.putExtra(getString(R.string.animal_key),mAdapter.getItem(position));
+        startActivity(intent);
     }
 
     @Override

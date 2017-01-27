@@ -43,7 +43,7 @@ public class Animal implements Parcelable{
     }
 
     public String getSpecies() {
-        return species;
+        return this.species;
     }
 
     public void setSpecies(String species) {
@@ -51,7 +51,7 @@ public class Animal implements Parcelable{
     }
 
     public String getDescription() {
-        return description;
+        return this.description;
     }
 
     public void setDescription(String description) {
