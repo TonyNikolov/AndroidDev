@@ -12,5 +12,5 @@ import dagger.Component;
 @CustomScope
 @Component(dependencies = NetComponent.class, modules = MainScreenModule.class)
 public interface MainScreenComponent {
-    void inject(MainScreenFragment activity);
+    void inject(MainScreenFragment fragment);
 }
