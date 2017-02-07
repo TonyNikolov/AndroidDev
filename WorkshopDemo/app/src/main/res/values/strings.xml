@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">WorkshopDemo</string>
+    <string name="BooksList">Books</string>
+    <string name="Search">Search</string>
+    <string name="About">About</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="Superheroes">Superheroes</string>
+    <string name="Fractions">Fractions</string>
+    <string name="action_add">Add</string>
+</resources>
