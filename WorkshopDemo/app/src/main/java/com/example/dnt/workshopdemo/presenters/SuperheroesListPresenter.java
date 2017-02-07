@@ -58,7 +58,7 @@ public class SuperheroesListPresenter implements PresenterContract.SuperheroesLi
 
 
     private interface superheroService {
-        @GET("/TonyNikolov/89720ae547e479fb9e92c81ef4b33bef/raw/dcabde67e7fe9032cff702cc24f0cfe208b7402e/superheroes.json")
+        @GET("/superheroes")
         Observable<List<Superhero>> getSuperheroesList();
     }
 }

@@ -9,6 +9,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.dnt.workshopdemo.R;
+import com.squareup.picasso.Picasso;
+
+import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -61,13 +64,15 @@ public class superheroAdapter extends RecyclerView.Adapter<superheroAdapter.MyVi
             super(itemView);
             this.itemView = itemView;
             this.name = (TextView)itemView.findViewById(R.id.tvSuperheroName);
+            this.secretIdentity= (TextView) itemView.findViewById(R.id.tvSuperheroSecretIdentity);
+            this.imageUrl =(ImageView) itemView.findViewById(R.id.ivImage);
         }
 
         public void setData(Superhero current, int position) {
             this.name.setText(current.getName());
-//            this.secretIdentity.setText(current.getSecretIdentity());
+            this.secretIdentity.setText(current.getSecretIdentity());
             this.position = position;
-//            Picasso.with(mContext).load(current.getImageUrl()).into(this.imageUrl);
+            Picasso.with(mContext).load(current.getImageUrl()).into(this.imageUrl);
             this.superheroId = current.getId();
             this.current = current;
         }
