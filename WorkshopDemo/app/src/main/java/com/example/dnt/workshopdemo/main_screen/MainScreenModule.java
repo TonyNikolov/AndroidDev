@@ -1,5 +1,7 @@
 package com.example.dnt.workshopdemo.main_screen;
 
+import android.view.View;
+
 import com.example.dnt.workshopdemo.ViewContract;
 import com.example.dnt.workshopdemo.utils.CustomScope;
 
@@ -16,6 +18,11 @@ public class MainScreenModule {
     private ViewContract.SuperheroesList mBooksListView;
     private ViewContract.Search mSearchView;
     private ViewContract.About mAboutView;
+    private ViewContract.FractionList mFractionsView;
+
+    public MainScreenModule(ViewContract.FractionList mFractionsView){
+        this.mFractionsView = mFractionsView;
+    }
 
 //    public MainScreenModule(ViewContract.Tabs mTabsView) {
 //
@@ -58,5 +65,9 @@ public class MainScreenModule {
     ViewContract.About providesMainScreenViewContractAbout() {
         return mAboutView;
     }
+
+    @Provides
+    @CustomScope
+    ViewContract.FractionList providesMainScreenViewContractFractionsList(){return mFractionsView;}
 
 }

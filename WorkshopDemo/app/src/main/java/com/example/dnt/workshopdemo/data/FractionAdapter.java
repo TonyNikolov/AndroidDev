@@ -9,26 +9,20 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.dnt.workshopdemo.R;
-import com.example.dnt.workshopdemo.utils.MyCommunicator;
 import com.squareup.picasso.Picasso;
 
-import org.w3c.dom.Text;
-
 import java.util.List;
-
-import static android.R.attr.id;
 
 /**
  * Created by dnt on 7.2.2017 г..
  */
 
-public class superheroAdapter extends RecyclerView.Adapter<superheroAdapter.MyViewHolder> {
-
-    List<Superhero> mData;
+public class FractionAdapter  extends RecyclerView.Adapter<FractionAdapter.MyViewHolder> {
+    List<Fraction> mData;
     private LayoutInflater inflater;
     private Context mContext;
 
-    public superheroAdapter(Context context, List<Superhero> data) {
+    public FractionAdapter(Context context, List<Fraction> data) {
         this.mContext = context;
         inflater = LayoutInflater.from(context);
         this.mData = data;
@@ -36,17 +30,17 @@ public class superheroAdapter extends RecyclerView.Adapter<superheroAdapter.MyVi
 
 
     @Override
-    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = inflater.inflate(R.layout.list_superhero, parent, false);
-        MyViewHolder holder = new MyViewHolder(view);
+    public FractionAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = inflater.inflate(R.layout.list_fraction, parent, false);
+        FractionAdapter.MyViewHolder holder = new FractionAdapter.MyViewHolder(view);
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
-        Superhero current = mData.get(position);
+    public void onBindViewHolder(FractionAdapter.MyViewHolder holder, int position) {
+        Fraction current = mData.get(position);
         holder.setData(current,position);
-        holder.setListeners();
+//        holder.setListeners();
     }
 
     @Override
@@ -59,19 +53,19 @@ public class superheroAdapter extends RecyclerView.Adapter<superheroAdapter.MyVi
         TextView name;
         View itemView;
         ImageView imageUrl;
-        Superhero current;
+        Fraction current;
         int superheroId;
         int position;
 
         public MyViewHolder(View itemView) {
             super(itemView);
             this.itemView = itemView;
-            this.name = (TextView)itemView.findViewById(R.id.tvSuperheroName);
-            this.secretIdentity= (TextView) itemView.findViewById(R.id.tvSuperheroSecretIdentity);
+            this.name = (TextView)itemView.findViewById(R.id.tvFractionName);
+            this.secretIdentity= (TextView) itemView.findViewById(R.id.tvFractionSecretIdentity);
             this.imageUrl =(ImageView) itemView.findViewById(R.id.ivImage);
         }
 
-        public void setData(Superhero current, int position) {
+        public void setData(Fraction current, int position) {
             this.name.setText(current.getName());
             this.secretIdentity.setText(current.getSecretIdentity());
             this.position = position;
@@ -80,16 +74,16 @@ public class superheroAdapter extends RecyclerView.Adapter<superheroAdapter.MyVi
             this.current = current;
         }
 
-        public void setListeners() {
-
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
-                    MyCommunicator myCommunicator = (MyCommunicator) mContext;
-                    myCommunicator.displaySuperheroDetails(superheroId);
-                }
-            });
-        }
+//        public void setListeners() {
+//
+//            itemView.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//
+//                    MyCommunicator myCommunicator = (MyCommunicator) mContext;
+//                    myCommunicator.displaySuperheroDetails(superheroId);
+//                }
+//            });
+//        }
     }
 }

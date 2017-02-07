@@ -2,6 +2,7 @@ package com.example.dnt.workshopdemo;
 
 import com.example.dnt.workshopdemo.data.Fraction;
 import com.example.dnt.workshopdemo.data.Superhero;
+import com.example.dnt.workshopdemo.data.SuperheroDetails;
 
 import java.util.List;
 
@@ -18,8 +19,16 @@ public interface ViewContract {
         void showComplete();
     }
 
+    interface SuperheroDetailsContract{
+        void showSuperheroe(SuperheroDetails superhero);
+
+        void showError(String message);
+
+        void showComplete();
+    }
+
     interface FractionList {
-        void showSuperheroes(List<Fraction> fractions);
+        void showFractions(List<Fraction> fractions);
 
         void showError(String message);
 
